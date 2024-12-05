@@ -29,11 +29,11 @@ from django.utils.safestring import mark_safe
 from django.utils.http import urlencode
 from django.core.urlresolvers import reverse
 from django.conf import settings
-import random
 import datetime
 from django.utils.translation import ugettext_lazy as _
 from django.db.models import Count, Case, When, IntegerField, Prefetch
 from pods.models import Pod, Playlist
+import secrets
 
 register = Library()
 
@@ -74,7 +74,7 @@ def dict(params, new_key, new_value):
 @register.simple_tag()
 def randomchoices():
     a = ("horizontal", "vertical")
-    return random.choice(a)
+    return secrets.choice(a)
 
 
 @register.filter_function
